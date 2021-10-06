@@ -22,7 +22,6 @@ import OutsideView from 'react-native-detect-press-outside';
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-Here's an [example](https://github.com/cuongtranduc/react-native-detect-press-outside/example) of how to use this library
 
 ```javascript
 import OutsideView from 'react-native-detect-press-outside';
@@ -52,3 +51,10 @@ const App = () => {
 - **The OutsideView component was built base on [View](https://reactnative.dev/docs/view) component so it will accept all [View's Props](https://reactnative.dev/docs/view#props)**
 - **`childRef`**: ref of the component that you want to detect press event outside of.
 - **`onPressOutside`**: callback function when press outside of childref
+
+
+Here's an [example](https://github.com/cuongtranduc/react-native-detect-press-outside/example) of how to use this library
+
+<p align="left">
+  <img src="example.gif" width="250" title="screenshot">
+</p>
