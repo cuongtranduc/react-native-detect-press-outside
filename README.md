@@ -53,7 +53,7 @@ const App = () => {
 - **`onPressOutside`**: callback function when press outside of childref
 
 
-Here's an [example](https://github.com/cuongtranduc/react-native-detect-press-outside/example) of how to use this library
+Here's an [example](https://github.com/cuongtranduc/react-native-detect-press-outside/tree/main/example) of how to use this library
 
 <p align="left">
   <img src="example.gif" width="250" title="screenshot">
