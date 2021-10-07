@@ -1,6 +1,6 @@
 {
   "name": "react-native-detect-press-outside",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a wrapper view help to detect when user press outside a child component by passing a ref to this component as a prop",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -24,10 +24,9 @@
   "author": "cuongtd",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.4.3"
-  },
-  "dependencies": {
+    "typescript": "^4.4.3",
     "@types/react": "^17.0.27",
     "@types/react-native": "^0.65.5"
-  }
+  },
+  "dependencies": {}
 }

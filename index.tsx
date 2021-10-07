@@ -46,29 +46,38 @@ const isTapInsideComponent = (target: any, nestedViewRef: any) => {
 
 /**
  * Wrapper component to detect event outside a specific element
- * Inherit from View, so it will take all View's props 
+ * Inherit from View, so it will take all View's props
  * @param OutsideViewProps - acceptance props
  */
 const OutsideView = ({
   children,
-  onPressOutside,
   childRef,
+  onPressOutside,
+  onMoveShouldSetResponder,
   ...rest
 }: OutsideViewProps) => (
   <View
     {...rest}
     onStartShouldSetResponder={(evt: GestureResponderEvent) => {
       evt.persist();
-      if (!childRef) {
-        return true;
-      }
-      if (!isTapInsideComponent(evt.target, childRef.current || childRef)) {
+
+      // if press outside, execute onPressOutside callback
+      if (
+        childRef &&
+        !isTapInsideComponent(evt.target, childRef.current || childRef)
+      ) {
         onPressOutside && onPressOutside();
       }
+
+      // return onMoveShouldSetResponder in case it is passed to OutsideView
+      if (onMoveShouldSetResponder) {
+        return onMoveShouldSetResponder(evt);
+      }
+
       return true;
     }}
   >
-    {rest}
+    {children}
   </View>
 );
 
