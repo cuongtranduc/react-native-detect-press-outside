@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./lib",
+    "strict": true,
+    // "allowJs": true,
+    "skipLibCheck": true,
+    "jsx": "react",
+    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+  },
+  "include": ["index.tsx",],
+  "exclude": ["node_modules","lib", "**/__tests__/*"]
+}
