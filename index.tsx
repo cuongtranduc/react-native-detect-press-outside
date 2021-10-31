@@ -1,32 +1,24 @@
-// @flow
-
-import React from "react";
+import React, { FC, RefObject } from "react";
 import { View, ViewProps, GestureResponderEvent } from "react-native";
 
-type OutsideViewProps = ViewProps & {
-  /**
-   * Either children or a render prop that receives a boolean reflecting whether
-   * the component is currently pressed.
-   */
-  children?: React.ReactNode;
-
+interface OutsideViewProps extends ViewProps {
   /**
    * Ref of element you want to detect press event outside of
    */
-  childRef: any;
+  childRef: RefObject<any>;
 
   /**
-   * callback funtion when press outside of ref component
+   * callback function when press outside of ref component
    */
-  onPressOutside: () => void;
-};
+  onPressOutside?: () => void;
+}
 
 /**
  * use recursive to check if press inside that component
  * @param target - this is childRef component
  * @param nestedViewRef - all of children element of childRef
  */
-const isTapInsideComponent = (target: any, nestedViewRef: any) => {
+const isTapInsideComponent = (target: any, nestedViewRef: any): boolean => {
   if (
     target &&
     nestedViewRef &&
@@ -42,6 +34,8 @@ const isTapInsideComponent = (target: any, nestedViewRef: any) => {
       }
     }
   }
+
+  return false;
 };
 
 /**
@@ -49,13 +43,12 @@ const isTapInsideComponent = (target: any, nestedViewRef: any) => {
  * Inherit from View, so it will take all View's props
  * @param OutsideViewProps - acceptance props
  */
-const OutsideView = ({
-  children,
+const OutsideView: FC<OutsideViewProps> = ({
   childRef,
   onPressOutside,
-  onMoveShouldSetResponder,
+  onStartShouldSetResponder,
   ...rest
-}: OutsideViewProps) => (
+}) => (
   <View
     {...rest}
     onStartShouldSetResponder={(evt: GestureResponderEvent) => {
@@ -63,22 +56,17 @@ const OutsideView = ({
 
       // if press outside, execute onPressOutside callback
       if (
+        onPressOutside &&
         childRef &&
         !isTapInsideComponent(evt.target, childRef.current || childRef)
       ) {
-        onPressOutside && onPressOutside();
+        onPressOutside();
       }
 
-      // return onMoveShouldSetResponder in case it is passed to OutsideView
-      if (onMoveShouldSetResponder) {
-        return onMoveShouldSetResponder(evt);
-      }
-
-      return true;
+      // return onStartShouldSetResponder in case it is passed to OutsideView
+      return onStartShouldSetResponder?.(evt) ?? true;
     }}
-  >
-    {children}
-  </View>
+  />
 );
 
 export default OutsideView;
