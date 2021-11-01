@@ -4,6 +4,7 @@
   "description": "a wrapper view help to detect when user press outside a child component by passing a ref to this component as a prop",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "files": ["lib"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
